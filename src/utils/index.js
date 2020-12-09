@@ -1,5 +1,5 @@
 import { project, device, user } from "../assets";
-import { Item } from "../models/item";
+import { ProjectItem } from "../models/project-item";
 
 export const getListItems = () => {
   return project.map(({ id, title, beginDate, expirationDate }) => {
@@ -9,6 +9,19 @@ export const getListItems = () => {
     const devices = device
       .filter(({ projectId }) => projectId === id)
       .map(({ serialNumber }) => serialNumber);
-    return new Item(id, title, [beginDate, expirationDate], devices, users);
+    return new ProjectItem(
+      id,
+      title,
+      [formatDate(beginDate), formatDate(expirationDate)],
+      devices,
+      users
+    );
   });
+};
+
+const formatDate = (date) => {
+  if (date) {
+    return new Date(date).toISOString().slice(0, 10);
+  }
+  return new Date().toISOString().slice(0, 10);
 };

@@ -1,11 +1,21 @@
-import "./App.css";
-import { getListItems } from "../../utils";
+import ListItems from "../list-items";
+import { makeStyles } from "@material-ui/core/styles";
 
-const listItems = getListItems();
-console.log(listItems);
+const useStyles = makeStyles(() => ({
+  root: {
+    flexGrow: 1,
+    background: "#b7b7b7",
+    padding: "16px",
+  },
+}));
 
 const App = () => {
-  return <div className="App">Learn React</div>;
+  const { root } = useStyles();
+  return (
+    <div className={root}>
+      <ListItems />
+    </div>
+  );
 };
 
 export default App;

@@ -1,4 +1,4 @@
-export class Item {
+export class ProjectItem {
   constructor(id, name, dateRange, devices, users) {
     this.id = id;
     this.name = name;
